@@ -6,7 +6,7 @@ const Task = sequelize.define('Task', {
   id: {
     type: DataTypes.STRING,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
+    allowNull: false
   },
   id_user: {
     type: DataTypes.INTEGER,
@@ -29,7 +29,7 @@ const Task = sequelize.define('Task', {
     allowNull: false
   },
   status: {
-    type: DataTypes.ENUM('TODO', 'IN PROGRESS', 'DONE','Canceled','Backlog'),
+    type: DataTypes.ENUM('TODO', 'IN PROGRESS', 'DONE', 'Canceled', 'Backlog'),
     defaultValue: 'TODO'
   },
   priority: {
@@ -39,6 +39,20 @@ const Task = sequelize.define('Task', {
   team: {
     type: DataTypes.STRING,
     allowNull: true
+  }
+}, {
+  hooks: {
+    beforeCreate: async (task) => {
+      const lastTask = await Task.findOne({
+        order: [['createdAt', 'DESC']]
+      });
+
+      const lastNumber = lastTask 
+        ? parseInt(lastTask.id.split('-')[1]) 
+        : 0;
+
+      task.id = `TASK-${lastNumber + 1}`;
+    }
   }
 });
 
