@@ -19,11 +19,10 @@ exports.register = async (req, res) => {
       password
     });
 
-    const token = generateToken(user);
 
     res.status(201).json({
       message: 'User registered successfully',
-      token
+      user: user
     });
   } catch (error) {
     res.status(400).json({
