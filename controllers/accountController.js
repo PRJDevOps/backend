@@ -1,9 +1,18 @@
 const Account = require('../models/account');
+const User = require('../models/user');
 
 // Create new account
 exports.createAccount = async (req, res) => {
   try {
-    const account = await Account.create(req.body);
+    // Get user ID from JWT token (set by auth middleware)
+    const userId = req.user.id;
+    
+    // Create account with user ID from token
+    const account = await Account.create({
+      ...req.body,
+      id_user: userId
+    });
+
     res.status(201).json({
       success: true,
       data: account
