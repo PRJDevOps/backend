@@ -135,6 +135,24 @@ DELETE /api/accounts/:id
 Authorization: Bearer <token>
 ```
 
+### Task Management Endpoints
+
+#### Create Task
+```http
+POST /api/tasks
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+    "title": "string",
+    "type": "string",
+    "task": "string",
+    "status": "TODO" | "IN PROGRESS" | "DONE" | "Canceled" | "Backlog",
+    "priority": "LOW" | "MEDIUM" | "HIGH",
+    "team": "string"
+}
+```
+
 ## Data Models
 
 ### User Model
