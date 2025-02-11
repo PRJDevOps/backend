@@ -11,6 +11,7 @@ const Account = sequelize.define('Account', {
   id_user: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    unique: true,
     references: {
       model: User,
       key: 'id'
