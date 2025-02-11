@@ -4,9 +4,9 @@ const User = require('./user');
 
 const Task = sequelize.define('Task', {
   id: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     primaryKey: true,
-    allowNull: false
+    autoIncrement: true
   },
   id_user: {
     type: DataTypes.INTEGER,
@@ -39,20 +39,6 @@ const Task = sequelize.define('Task', {
   team: {
     type: DataTypes.STRING,
     allowNull: true
-  }
-}, {
-  hooks: {
-    beforeCreate: async (task) => {
-      const lastTask = await Task.findOne({
-        order: [['createdAt', 'DESC']]
-      });
-
-      const lastNumber = lastTask 
-        ? parseInt(lastTask.id.split('-')[1]) 
-        : 0;
-
-      task.id = `TASK-${lastNumber + 1}`;
-    }
   }
 });
 
