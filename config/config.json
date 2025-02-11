@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "Devops_test",
+    "host": "mysql",
+    "dialect": "mysql"
+  }
+}
