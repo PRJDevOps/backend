@@ -4,9 +4,9 @@ const User = require('./user');
 
 const Task = sequelize.define('Task', {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true
   },
   id_user: {
     type: DataTypes.INTEGER,
@@ -29,7 +29,7 @@ const Task = sequelize.define('Task', {
     allowNull: false
   },
   status: {
-    type: DataTypes.ENUM('TODO', 'IN PROGRESS', 'DONE', 'Canceled', 'Backlog'),
+    type: DataTypes.ENUM('TODO', 'IN_PROGRESS', 'DONE', 'Canceled', 'Backlog'),
     defaultValue: 'TODO'
   },
   priority: {

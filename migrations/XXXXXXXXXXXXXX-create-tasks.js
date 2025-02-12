@@ -4,7 +4,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Tasks', {
       id: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
         primaryKey: true,
         defaultValue: Sequelize.UUIDV4
       },
@@ -31,7 +31,7 @@ module.exports = {
         allowNull: false
       },
       status: {
-        type: Sequelize.ENUM('TODO', 'IN_PROGRESS', 'DONE'),
+        type: Sequelize.ENUM('TODO', 'IN_PROGRESS', 'DONE', 'Canceled', 'Backlog'),
         defaultValue: 'TODO'
       },
       priority: {
