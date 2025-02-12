@@ -26,7 +26,7 @@ services:
       - "8080:80"
 
   app:
-    build: .
+    image: rhaloubi8/devops-backend:latest
     container_name: express_app
     restart: always
     depends_on:
@@ -41,7 +41,6 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: sh -c "npx sequelize-cli db:migrate && npm start"
 
 volumes:
   mysql_data:
