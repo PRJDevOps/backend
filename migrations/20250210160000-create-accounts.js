@@ -11,7 +11,6 @@ module.exports = {
       id_user: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        unique: true,  // This ensures one account per user
         references: {
           model: 'Users',
           key: 'id'
