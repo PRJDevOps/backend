@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/auth');
-//const accountRoutes = require('./routes/account');
+const accountRoutes = require('./routes/account');
 const taskRoutes = require('./routes/tasks');
 
 const app = express();
@@ -12,7 +12,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
-//app.use('/api/accounts', accountRoutes);
+app.use('/api/accounts', accountRoutes);
 app.use('/api/tasks', taskRoutes);
 
 // Database sync and server start
