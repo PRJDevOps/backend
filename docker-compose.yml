@@ -33,14 +33,15 @@ services:
       - mysql
     environment:
       DB_HOST: mysql
-      DB_USER: root
-      DB_PASS: 
+      DB_USER: reda
+      DB_PASS: reda
       DB_NAME: Devops_test
     ports:
       - "3000:3000"
     volumes:
       - .:/app
-    command: ["sh", "-c", "npx sequelize db:migrate && npm start"]
+      - /app/node_modules
+    command: sh -c "npx sequelize-cli db:migrate && npm start"
 
 volumes:
   mysql_data:
