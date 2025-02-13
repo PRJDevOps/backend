@@ -182,13 +182,16 @@ exports.deleteUser = async (req, res) => {
       });
     }
 
-    // Only allow admin to delete users or users to delete themselves
-    if (req.user.role !== 'admin' && req.user.id !== user.id) {
-      return res.status(403).json({
-        success: false,
-        error: 'Not authorized to delete this user'
+    // Check if user is admin first
+    if (req.user.role === 'admin') {
+      await user.destroy();
+      return res.status(200).json({
+        success: true,
+        message: 'User deleted successfully'
       });
     }
+
+  
 
     await user.destroy();
     

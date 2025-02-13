@@ -5,15 +5,5 @@
     "database": "Devops_test",
     "host": "mysql",
     "dialect": "mysql"
-  },
-  "production": {
-    "use_env_variable": "MYSQL_URL",
-    "dialect": "mysql",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
   }
 }
