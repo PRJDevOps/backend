@@ -7,7 +7,13 @@ const taskRoutes = require('./routes/tasks');
 
 const app = express();
 
-app.use(cors());
+// Allow all origins CORS configuration
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 // Routes
