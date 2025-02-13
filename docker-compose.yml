@@ -27,6 +27,7 @@ services:
 
   app:
     image: rhaloubi8/devops-backend:latest
+    pull_policy: always
     container_name: express_app
     restart: always
     depends_on:
