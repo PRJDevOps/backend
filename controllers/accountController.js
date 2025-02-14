@@ -63,6 +63,32 @@ exports.getAccount = async (req, res) => {
   }
 };
 
+// Add new method to get account by user_id
+exports.getAccountByUserId = async (req, res) => {
+  try {
+    const account = await Account.findOne({
+      where: { id_user: req.params.userId }
+    });
+    
+    if (!account) {
+      return res.status(404).json({
+        success: false,
+        error: 'Account not found for this user'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: account
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+};
+
 // Update account
 exports.updateAccount = async (req, res) => {
   try {
