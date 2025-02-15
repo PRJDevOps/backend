@@ -4,6 +4,7 @@ const sequelize = require('./config/database');
 const authRoutes = require('./routes/auth');
 const accountRoutes = require('./routes/account');
 const taskRoutes = require('./routes/tasks');
+const attendanceRoutes = require('./routes/attendance');
 
 const app = express();
 
@@ -20,6 +21,9 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/accounts', accountRoutes);
 app.use('/api/tasks', taskRoutes);
+
+// Add the new route
+app.use('/api/attendance', attendanceRoutes);
 
 // Database sync and server start
 const PORT = process.env.PORT || 3000;
